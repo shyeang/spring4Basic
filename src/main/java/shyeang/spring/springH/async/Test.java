@@ -14,26 +14,28 @@ public class Test {
     public static void main(String [] args) throws InterruptedException {
         AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(TaskExecutorConfig.class);
         executeAsyncTask ea = ac.getBean(executeAsyncTask.class);
-        ThreadPoolTaskExecutor e = ac.getBean(ThreadPoolTaskExecutor.class);
         List<Integer> li = new ArrayList<Integer>();
-
         //
         for (int i = 0; i < 1000; i++){
             try {
+                //executeAsynTask与executeAsyncTaskPlus存在由两个线程分别执行的情况
+                //3----a----getAsyncExecutor-7
+                //3----b----getAsyncExecutor-8
                 ea.executeAsynTask(i);
+                ea.executeAsyncTaskPlus(i);
 //                System.out.println("a----" + i );
             } catch (TaskRejectedException te){
                 li.add(i);
             }
-
 //            ea.executeAsyncTaskPlus(i);
         }
+
+
         Thread.sleep(10000);
         System.out.println("==================" );
         for (Integer i:li){
-            System.out.println("----" + i );
+            System.out.println("--aaa--" + i );
         }
-
 
 //
 //        for (int i = 0; i < 10; i++){

@@ -1,7 +1,6 @@
 package shyeang.spring.springH.async;
 
 import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.lang.Nullable;
@@ -9,13 +8,10 @@ import org.springframework.scheduling.annotation.AsyncConfigurer;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
-import java.util.concurrent.Executor;
-import java.util.concurrent.ThreadPoolExecutor;
-
 @Configuration
 @ComponentScan("shyeang.spring.springH.async")
 @EnableAsync
-public class TaskExecutorConfig implements AsyncConfigurer {
+public class TaskExecutorConfig2 implements AsyncConfigurer {
     public static int i = 0;
     public static String  name = "a";
     @Nullable

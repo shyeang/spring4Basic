@@ -14,26 +14,10 @@ public class executeAsyncTask {
     @Async
     public void executeAsynTask(Integer i) throws InterruptedException {
         System.out.println(i + "----a----" + Thread.currentThread().getName());
-//        synchronized (this){
-//            while(count == 0){
-//                this.wait();
-//            }
-//            ls.add("execute async task:" + i);
-//            count--;
-//        }
-
     }
 
     @Async
     public void  executeAsyncTaskPlus(Integer i) throws InterruptedException {
-        System.out.println("----b----" + Thread.currentThread().getName());
-//        synchronized (this){
-//            while (count > 20){
-//                this.wait();
-//            }
-//            count++;
-//            ls.add("execute async task plus:" + i);
-//            this.notifyAll();
-//        }
+        System.out.println(i + "----b----" + Thread.currentThread().getName());
     }
 }
