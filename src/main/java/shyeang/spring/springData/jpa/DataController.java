@@ -1,9 +1,14 @@
 package shyeang.spring.springData.jpa;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import static shyeang.spring.springData.jpa.CustomerSpecs.*;
 
 import java.util.List;
 
@@ -31,6 +36,36 @@ public class DataController {
     public Person qs(String name, String  addr){
         Person p = personRepository.withNameAndAddressNameQuery(name, addr);
         return p;
+    }
+
+    @RequestMapping("/qsi")
+    @ResponseBody
+    public Person qsi(String name, String  addr){
+        Person p = personRepository.withNameAndAddressIndexQuery(name, addr);
+        return p;
+    }
+
+
+    @RequestMapping("/qsCriteria")
+    @ResponseBody
+    public List<Person> qsCriteria(String name, String  addr){
+        List<Person> lp = personRepository.findAll(personFromHefei());
+        return lp;
+    }
+
+
+    @RequestMapping("/qsSort")
+    @ResponseBody
+    public List<Person> qsSort(String name){
+        List<Person> lp = personRepository.findByName(name, new Sort(Sort.Direction.ASC, "age"));
+        return lp;
+    }
+
+    @RequestMapping("/qsPage")
+    @ResponseBody
+    public Page<Person> qsPage(String name){
+        Page<Person> lp = personRepository.findByName(name,  PageRequest.of(1, 10,  new Sort(Sort.Direction.ASC, "age")));
+        return lp;
     }
 
 
