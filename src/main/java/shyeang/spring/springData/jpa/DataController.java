@@ -68,5 +68,12 @@ public class DataController {
         return lp;
     }
 
+    @RequestMapping("/qsAll")
+    @ResponseBody
+    public List<Person> qsAll(String name){
+        List<Person> lp = personRepository.findAllByNameNotNull();
+        return lp;
+    }
+
 
 }

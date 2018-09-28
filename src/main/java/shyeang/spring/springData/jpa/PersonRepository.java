@@ -14,6 +14,8 @@ import java.util.List;
 
 public interface PersonRepository extends JpaRepository<Person, Long>, JpaSpecificationExecutor {
 
+    List<Person> findAllByNameNotNull();
+
     List<Person> findByAddress(String address);
 
     Person findByNameAndAddress(String name, String address);
